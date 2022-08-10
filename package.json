@@ -2,19 +2,30 @@
   "name": "1-electron-react-tailwind-boilerplate",
   "version": "0.1.0",
   "private": true,
+  "main": "public/main.js",
+  "homepage": "./",
   "dependencies": {
+    "@craco/craco": "^6.4.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "autoprefixer": "^9",
+    "concurrently": "^7.3.0",
+    "cross-env": "^7.0.3",
+    "electron-is-dev": "^2.0.0",
+    "electron-store": "^8.1.0",
+    "postcss": "^7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat",
+    "wait-on": "^6.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "concurrently \"cross-env BROWSER=none cross-env TAILWIND_MODE=watch craco start\" \"wait-on http://localhost:3000 && electron .\"",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -34,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "electron": "^20.0.1"
   }
 }
